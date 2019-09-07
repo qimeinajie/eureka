@@ -45,6 +45,6 @@ node {
         //unstash 'complete-build'
         echo "5. Deploy Stage"
 
-        sh "docker run -p 9999:8761 --name eureka ${docker_img_name}:${build_tag}"
+        sh "docker run -d -p 9999:8761 --name eureka ${docker_img_name}:${build_tag}"
     }
 }
