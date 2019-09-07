@@ -32,7 +32,7 @@ node {
         echo "4.Push Docker Image Stage"
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:latest"
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:${pom.version}"
-        withCredentials([usernamePassword(credentialsId: 'docker-register', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
+        withCredentials([usernamePassword(credentialsId: 'nana-docker', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
             sh "docker login -u ${dockerUser} -p ${dockerPassword} docker.ryan-miao.com"
             sh "docker push ${docker_img_name}:latest"
             sh "docker push ${docker_img_name}:${pom.version}"
