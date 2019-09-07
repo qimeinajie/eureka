@@ -4,8 +4,9 @@ node {
         checkout scm
         pom = readMavenPom file: 'pom.xml'
         docker_host = "registry.cn-hangzhou.aliyuncs.com/foreveross_lin"
+        docker_repo = "${docker_host}/foreveross_lin"
         img_name = "${pom.groupId}-${pom.artifactId}"
-        docker_img_name = "${docker_host}/${img_name}"
+        docker_img_name = "${docker_repo}/${img_name}"
         echo "group: ${pom.groupId}, artifactId: ${pom.artifactId}, version: ${pom.version}"
         echo "docker-img-name: ${docker_img_name}"
         script {
@@ -33,7 +34,7 @@ node {
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:latest"
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:${pom.version}"
         withCredentials([usernamePassword(credentialsId: 'nana-docker', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
-            sh "docker login -u ${dockerUser} -p ${dockerPassword} docker.ryan-miao.com"
+            sh "docker login -u ${dockerUser} -p ${dockerPassword} ${docker_host}"
             sh "docker push ${docker_img_name}:latest"
             sh "docker push ${docker_img_name}:${pom.version}"
             sh "docker push ${docker_img_name}:${build_tag}"
