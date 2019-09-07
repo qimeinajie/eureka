@@ -3,7 +3,7 @@ node {
         echo "1.Prepare Stage"
         checkout scm
         pom = readMavenPom file: 'pom.xml'
-        docker_host = "registry.cn-hangzhou.aliyuncs.com/foreveross_lin"
+        docker_host = "registry.cn-hangzhou.aliyuncs.com"
         docker_repo = "${docker_host}/foreveross_lin"
         img_name = "${pom.groupId}-${pom.artifactId}"
         docker_img_name = "${docker_repo}/${img_name}"
