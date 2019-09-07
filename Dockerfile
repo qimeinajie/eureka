@@ -5,4 +5,4 @@ VOLUME ["/home/logs"]
 ENV ZIPKIN_PERCENTAGE=0.1
 WORKDIR /root
 
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom","-jar", "/root/target/eureka.jar"]
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom","-jar", "/root/target/my-eureka-peer3-0.0.1-SNAPSHOT.jar"]
