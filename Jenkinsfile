@@ -1,6 +1,4 @@
-pipeline {
-  agent any
-  stages {
+node {
      stage('Prepare') {
         echo "1.Prepare Stage"
         checkout scm
@@ -43,6 +41,4 @@ pipeline {
             sh "docker push ${docker_img_name}:${build_tag}"
         }
     }
-
-  }
 }
