@@ -44,9 +44,5 @@ pipeline {
         }
     }
 
-    //stash 'complete-build'
-
-}
-
   }
 }
