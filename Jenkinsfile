@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('cc') {
       steps {
-        sh 'ls'
+        sh 'cd ~ && ls'
       }
     }
   }
