@@ -29,8 +29,7 @@ node {
     }
 
     stage('Push') {
-        echo "4.Deploy jar and Push Docker Image Stage"
-        sh "mvn deploy -Dmaven.test.skip=true"
+        echo "4.Push Docker Image Stage"
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:latest"
         sh "docker tag ${docker_img_name}:${build_tag} ${docker_img_name}:${pom.version}"
         withCredentials([usernamePassword(credentialsId: 'docker-register', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUser')]) {
