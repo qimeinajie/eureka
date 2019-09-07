@@ -25,8 +25,7 @@ node {
         sh "mvn package  -Dmaven.test.skip=true"
         sh "docker build -t ${docker_img_name}:${build_tag} " +
                 " --build-arg SPRING_PROFILE=prod " +
-                " --build-arg JAR_FILE=target/${pom.artifactId}-${pom.version}.jar " +
-                " ."
+                " --build-arg JAR_FILE=target/${pom.artifactId}-${pom.version}.jar ."
     }
 
     stage('Push') {
