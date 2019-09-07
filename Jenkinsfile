@@ -41,4 +41,11 @@ node {
             sh "docker push ${docker_img_name}:${build_tag}"
         }
     }
+     
+    stage('Deploy') {
+        //unstash 'complete-build'
+        echo "5. Deploy Stage"
+
+        sh "docker run -p 9999:8761 --name eureka ${docker_img_name}:${build_tag}"
+    }
 }
